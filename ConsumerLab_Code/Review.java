@@ -212,11 +212,36 @@ public class Review {
     return starRating;
   }
 
+  //ACTIVITY 3 PART 1
+  //generate fake reviews
+  public static String fakeReview(String fileName){
+    //converts file to string
+    String review = textToString(fileName);
+    String word = "";
+    
+    //loops until there are no more asterisks
+    while(review.indexOf("*") != -1){
+      int asterisk = review.indexOf("*");
+      //finds the first occuring space after the first occurring asteriks
+      int space = review.indexOf(" ", asterisk);
+      //stores the adjective with the asteriks
+      String replacement = review.substring(asterisk, space);
+      //generates a new adjective
+      word = randomAdjective();
+      //replaces the old adj with the new one
+      review = review.replace(replacement, word);
+    }
+
+    return review;
+  }
+
   public static void main(String[] args){
     //ACTIVITY 2 PART 1
-        System.out.println(totalSentiment("SimpleReview.txt"));
+        //System.out.println(totalSentiment("SimpleReview.txt"));
     //ACTIVITY 2 PART 2
-        System.out.println(starRating("SimpleReview.txt"));
+        //System.out.println(starRating("SimpleReview.txt"));
+    //ACTIVITY 3 PART 1
+        System.out.println(fakeReview("SimpleReview.txt"));
 
   }
 }
